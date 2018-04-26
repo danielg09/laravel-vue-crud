@@ -17,6 +17,13 @@ new Vue({
 			axios.get(urlKeeps).then(response => {
 				this.keeps = response.data;
 			});
+		},
+
+		deleteKeep: function(keep){
+			var url='tasks/destroy/'+ keep.id;
+			axios.get(url).then(response =>{
+				this.getKeeps();
+			});
 		}
 	}
 

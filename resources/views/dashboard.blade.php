@@ -31,7 +31,7 @@
 					<th>@{{ keep.keep }}</th>
 					<th>
 						<a href="#" class="btn btn-warning btn-sm">Editar</a>
-						<a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+						<a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="deleteKeep(keep)">Eliminar</a>
 					</th>
 				</tr>				
 			</tbody>	
