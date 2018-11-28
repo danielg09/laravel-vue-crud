@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use Validator;
 
 class TaskController extends Controller
 {
@@ -15,21 +16,25 @@ class TaskController extends Controller
     public function index()
     {
         //
-        $tasks = Task::get();
+        $tasks = Task::orderBy('id', 'DESC')->paginate(4);
 
-        return $tasks;
+
+
+        return [
+            'paginate' => [
+                'total' => $tasks->total(),
+                'total' => $tasks->total(),
+                'total' => $tasks->total(),
+                'total' => $tasks->total(),
+                'total' => $tasks->total(),
+                'total' => $tasks->total(),
+            ],
+            'tasks' => $tasks
+
+        ];
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -40,18 +45,26 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //
+
+        $messages = [
+             'required' => 'Este campo es requerido',
+        ];
+
+        Validator::make($request->all(), [
+            'keep' => 'required'
+        ], $messages)->validate();
+
+        //$request->validate([
+        //    'keep' => 'required'
+        //]);
+
+        $task =  new Task();
+        $task->keep = $request->keep;
+        $task->save();
+
+        return;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -78,6 +91,20 @@ class TaskController extends Controller
     {
         //
 
+        $messages = [
+             'required' => 'Este campo es requerido',
+        ];
+
+        Validator::make($request->all(), [
+            'keep' => 'required'
+        ], $messages)->validate();
+
+        $task = Task::find($id);
+        
+        $task->keep = $request->keep;
+        $task->save();
+
+        return;
 
     }
 

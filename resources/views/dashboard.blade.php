@@ -4,25 +4,24 @@
 	
 <div id="crud" class="row">
 	
-	<div class="col-md-12">
-		<h1 class="display-3">
+	<div class="col s12">
+		<h1>
 			CRUD Laravel y Vue
 		</h1>
 	</div>
 
-	<div class="col-md-7">
-		<a href="#" class="btn btn-primary">Nueva Tarea</a>
+	<div class="col s12">
+		  <a class="waves-effect waves-light btn modal-trigger" href="#create">Nueva Tarea</a>
+
 	</div>
 
-	<div style="margin-top: 5px" class="col-md-7">
-		<table class="table table-hover table-striped ">
+	<div style="margin-top: 5px" class="col s6">
+		<table class="highlight striped ">
 			<thead>
 				<tr>
 					<th>Id</th>
 					<th>Tarea</th>
-					<th>
-						Acción
-					</th>
+					<th colspan="2">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,15 +29,19 @@
 					<th>@{{ keep.id }}</th>
 					<th>@{{ keep.keep }}</th>
 					<th>
-						<a href="#" class="btn btn-warning btn-sm">Editar</a>
-						<a href="#" class="btn btn-danger btn-sm" v-on:click.prevent="deleteKeep(keep)">Eliminar</a>
+						<a href="#" class="btn-small" v-on:click.prevent="editKeep(keep)">Editar</a>
+					</th>
+					<th>
+						<a href="#" class="btn-small" v-on:click.prevent="deleteKeep(keep)">Eliminar</a>
 					</th>
 				</tr>				
 			</tbody>	
 		</table>
+		@include('create')
+		@include('edit')
 	</div>
 
-	<div class="col-md-5">
+	<div class="col s6">
 		<pre>
 			@{{ $data }}
 		</pre>
