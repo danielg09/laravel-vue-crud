@@ -37,6 +37,18 @@
 				</tr>				
 			</tbody>	
 		</table>
+	    <ul class="pagination">
+		    <li v-if="pagination.current_page > 1" class="waves-effect">
+		    	<a href="#" @click.prevent="changePage(pagination.current_page - 1)"><i class="material-icons">chevron_left</i></a>
+		    </li>
+
+		    <li v-for="page in pagesNumber" v-bind:class="[ page == isActived ? 'active' : 'waves-effect']"><a href="#" @click.prevent="changePage(page)">@{{ page }}</a></li>
+
+		    <li v-if="pagination.current_page < pagination.last_page" class="waves-effect">
+		    	<a href="#" @click.prevent="changePage(pagination.current_page + 1)"><i class="material-icons">chevron_right</i></a>
+		    </li>
+	    </ul>
+
 		@include('create')
 		@include('edit')
 	</div>
