@@ -35822,7 +35822,7 @@ return /******/ (function(modules) { // webpackBootstrap
 });
 ;
 //# sourceMappingURL=axios.map
-new Vue({
+const app = new Vue({
 	el:'#crud',
 
 	created: function(){
